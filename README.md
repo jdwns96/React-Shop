@@ -2,9 +2,10 @@
 
 - cra
 - react-router-dom
-- typescript
-- tailwind
 - redux, redux-saga
+- typescript
+- emotion
+- tailwind
 
 ### 디렉토리 구조
 
@@ -36,3 +37,7 @@ tsconfig 에서 paths 경로를 달아도 시작하면 리셋이 된다. 따라�
 
 CRA 커스텀 실패, 자동으로 경로가 리셋되는 이슈 등 문제 있음
 그냥 CRACO 사용으로 변경
+
+### 이모션
+
+styled 컴포넌트와 다르게 추가적인 설정을 요함

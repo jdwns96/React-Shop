@@ -9,11 +9,11 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 // Redux
 import { Provider } from "react-redux";
 import store from "@modules";
-// import store from "modules/index";
 
 // router
 import router from "@pages/router";
-// import router from "pages/router";
+
+// emtion
 
 ReactDOM.render(
   <React.StrictMode>
