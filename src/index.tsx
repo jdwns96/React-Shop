@@ -14,11 +14,13 @@ import store from "@modules";
 import router from "@pages/router";
 
 // emtion
+import GlobalStyle from "@assets/styles/global";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
+        <GlobalStyle />
         <Switch>
           {router.map((elem, i) => (
             <Route exact={elem.exact} path={elem.path} component={elem.component} />
