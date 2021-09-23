@@ -3,7 +3,7 @@ import pages from "@pages";
 type Router = {
   id: number;
   exact: boolean;
-  path: string;
+  path: string | string[];
   component: () => JSX.Element;
 };
 
@@ -11,7 +11,7 @@ const router: Router[] = [
   {
     id: 1,
     exact: true,
-    path: "/",
+    path: ["/", "/main"],
     component: pages.Main,
   },
   {

@@ -1,11 +1,15 @@
 import React from "react";
 
+// layout
 import AppLayout from "@components/template/AppLayout";
+
+// component
+import MainComponent from "@components/main";
 
 const Main = () => {
   return (
     <AppLayout>
-      <div>메인</div>
+      <MainComponent />
     </AppLayout>
   );
 };
