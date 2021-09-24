@@ -3,10 +3,13 @@ import React from "react";
 // layout
 import AppLayout from "@components/template/AppLayout";
 
+//component
+import LoginComponent from "@components/login";
+
 const Login = () => {
   return (
     <AppLayout>
-      <div>로그인</div>
+      <LoginComponent />
     </AppLayout>
   );
 };
