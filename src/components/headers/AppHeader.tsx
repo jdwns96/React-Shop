@@ -16,7 +16,9 @@ const AppHeader = () => {
 };
 
 const header = css`
-  background-color: orange;
+  background-color: #ffffff;
+  background-color: rgba(252, 211, 77);
+  border: 2px solid #000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,7 +34,15 @@ const header = css`
       display: flex;
       justify-content: center;
       font-size: 2rem;
-      color: #ffffff;
+      color: #000;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header {
+      &__inner-container {
+        width: 100%;
+      }
     }
   }
 `;

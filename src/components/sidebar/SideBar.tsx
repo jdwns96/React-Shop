@@ -12,8 +12,8 @@ const SideBar = () => {
 
   return (
     <>
-      <div className="curtain" css={[curtain, toggle ? curtain_on : null]} onClick={onToggle}></div>
-      <div className="sidebar" css={[sidebar, toggle ? sidebar_on : null]}>
+      <div className={toggle ? "curtain curtain--on" : "curtain"} css={curtain} onClick={onToggle}></div>
+      <div className={toggle ? "sidebar sidebar--on" : "sidebar"} css={sidebar}>
         <div className="sidebar__button" onClick={onToggle}>
           버튼
         </div>
@@ -31,31 +31,51 @@ const SideBar = () => {
 };
 
 const sidebar = css`
-  /* position: fixed; */
-  position: absolute;
+  position: fixed;
   width: 400px;
   top: 0;
   right: -400px;
   height: 100vh;
-  background-color: black;
   z-index: 9999;
   transition: 0.3s;
   color: #fff;
 
+  &.sidebar--on {
+    right: 0;
+
+    @media (max-width: 768px) {
+      left: 0;
+
+      .sidebar {
+        &__button {
+          left: 0px;
+        }
+      }
+    }
+  }
+
   .sidebar {
     &__button {
-      color: #ffffff;
+      color: #000;
       cursor: pointer;
       z-index: 9999;
       width: 70px;
       height: 70px;
-      background-color: black;
+      /* background-color: #000; */
+      border-top: 2px solid black;
+      border-left: 2px solid black;
+      border-bottom: 2px solid black;
+      background-color: rgba(249, 168, 212);
       position: absolute;
       top: 0;
       left: -70px;
     }
 
     &__header {
+      background-color: rgba(249, 168, 212);
+      border-top: 2px solid black;
+      border-right: 2px solid black;
+      border-bottom: 2px solid black;
       width: 100%;
       height: 70px;
       font-size: 2rem;
@@ -84,27 +104,22 @@ const sidebar = css`
   }
 `;
 
-const sidebar_on = css`
-  left: unset !important;
-  right: 0;
-`;
-
 const curtain = css`
   position: absolute;
   width: 0;
   height: 0;
   opacity: 0;
   z-index: -9999;
-`;
 
-const curtain_on = css`
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  opacity: 0.3;
-  background-color: black;
-  z-index: 9999;
+  &.curtain--on {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    opacity: 0.3;
+    background-color: black;
+    z-index: 9999;
+  }
 `;
 
 export default SideBar;
