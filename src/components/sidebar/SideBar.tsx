@@ -99,7 +99,7 @@ const sidebar = css`
       & > .dummy {
         width: 100%;
         height: 500px;
-        background-color: #eee;
+        background-color: rgba(209, 250, 229);
         padding: 0.5rem;
       }
     }

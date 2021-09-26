@@ -21,6 +21,7 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <GlobalStyle />
+        {console.log("================================\nmade by GLE ^오^\n================================")}
         <Switch>
           {router.map((elem, i) => (
             <Route exact={elem.exact} path={elem.path} component={elem.component} />

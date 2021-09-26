@@ -8,7 +8,7 @@ const AppHeader = () => {
     <div className="header" css={header}>
       <div className="header__inner-container">
         <div className="header__title">
-          <span>OSS</span>
+          <span>GLE</span>
         </div>
       </div>
     </div>
@@ -16,7 +16,6 @@ const AppHeader = () => {
 };
 
 const header = css`
-  background-color: #ffffff;
   background-color: rgba(252, 211, 77);
   border: 2px solid #000;
   display: flex;
@@ -33,8 +32,10 @@ const header = css`
     &__title {
       display: flex;
       justify-content: center;
-      font-size: 2rem;
+      font-size: 2.5rem;
       color: #000;
+      font-weight: 600;
+      cursor: pointer;
     }
   }
 

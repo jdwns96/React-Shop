@@ -78,7 +78,7 @@ const card = css`
 
     &__button {
       button {
-        transition: 0.2s;
+        /* transition: 0.2s; */
         border: 2px solid black;
         border-radius: 3px;
         font-size: 1.5rem;
