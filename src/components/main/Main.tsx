@@ -5,6 +5,7 @@ import { css } from "@emotion/react";
 
 // child component
 import Card from "./Card";
+import Pagination from "./Pagination";
 
 const Main = () => {
   return (
@@ -18,12 +19,14 @@ const Main = () => {
             ))}
         </div>
       </div>
+      <Pagination />
     </>
   );
 };
 
 const main = css`
   padding: 2rem 0;
+  /* padding-bottom: 0rem; */
   width: 100%;
   max-width: 1920px;
   display: flex;

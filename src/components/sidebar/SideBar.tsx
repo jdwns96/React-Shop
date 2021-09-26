@@ -123,7 +123,7 @@ const curtain = css`
     width: 100vw;
     height: 100vh;
 
-    opacity: 0.3;
+    opacity: 0.5;
     background-color: black;
     z-index: 9999;
   }
