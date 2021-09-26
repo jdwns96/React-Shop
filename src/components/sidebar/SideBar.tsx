@@ -1,10 +1,14 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
 const SideBar = () => {
   const [toggle, setToggle] = useState(false);
+
+  useEffect(() => {
+    toggle ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset");
+  }, [toggle]);
 
   const onToggle = useCallback((e: React.MouseEvent) => {
     setToggle((prevState) => !prevState);
@@ -88,11 +92,14 @@ const sidebar = css`
     &__content {
       height: calc(100% - 70px);
       overflow-y: auto;
+      border-left: 2px solid #000;
+      border-bottom: 2px solid #000;
+      border-right: 2px solid #000;
 
       & > .dummy {
         width: 100%;
         height: 500px;
-        background-color: brown;
+        background-color: #eee;
         padding: 0.5rem;
       }
     }
@@ -105,17 +112,17 @@ const sidebar = css`
 `;
 
 const curtain = css`
-  position: absolute;
+  position: fixed;
   width: 0;
   height: 0;
+  top: 0;
   opacity: 0;
   z-index: -9999;
 
   &.curtain--on {
-    position: absolute;
     width: 100vw;
     height: 100vh;
-    top: 0;
+
     opacity: 0.3;
     background-color: black;
     z-index: 9999;

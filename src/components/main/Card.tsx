@@ -56,7 +56,6 @@ const card = css`
 
     &__img {
       flex-grow: 1;
-      flex-basis: 66.66%;
       border: 2px solid #000;
       border-radius: 3px;
       background-color: #000;

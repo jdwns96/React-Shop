@@ -3,9 +3,7 @@ import React from "react";
 // components
 import AppHeader from "@components/headers/AppHeader";
 import SideBar from "@components/sidebar/SideBar";
-
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import AppFooter from "@components/footers/AppFooter";
 
 const AppLayout = ({ children }: { children: JSX.Element }) => {
   return (
@@ -13,13 +11,9 @@ const AppLayout = ({ children }: { children: JSX.Element }) => {
       <AppHeader />
       <SideBar />
       {children}
-      <div css={test__footer}>App푸터</div>
+      <AppFooter />
     </>
   );
 };
-
-const test__footer = css`
-  background-color: orange;
-`;
 
 export default AppLayout;
