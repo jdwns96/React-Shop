@@ -1,7 +1,11 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
+
+// react-router
+import { useHistory } from "react-router";
+
 // Redux
 import { useSelector, useDispatch } from "react-redux";
-import { authRequestAction } from "@modules/global/auth";
+import { loginRequestAction } from "@modules/global/auth";
 import type { RootState } from "@modules";
 
 /** @jsxImportSource @emotion/react */
@@ -11,6 +15,9 @@ import { css } from "@emotion/react";
 import Spinner from "@components/common/Spinner";
 
 const Login = () => {
+  // react-router
+  const history = useHistory();
+
   // Redux
   const store = useSelector((store: RootState) => store.auth);
   const dispatch = useDispatch();
@@ -20,6 +27,20 @@ const Login = () => {
     ID: "",
     PW: "",
   });
+
+  // Ref
+  const updateRef = useRef(false);
+
+  // should Update
+  useEffect(() => {
+    if (updateRef.current === true) {
+      if (store.data.isLogin === true) {
+        history.push("/");
+      }
+    } else {
+      updateRef.current = true;
+    }
+  }, [store.data.isLogin, history]);
 
   // event handler
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +58,7 @@ const Login = () => {
       e.preventDefault();
 
       // action!
-      dispatch(authRequestAction({ id: form.ID, pw: form.PW }));
+      dispatch(loginRequestAction({ id: form.ID, pw: form.PW }));
     },
     [form, dispatch],
   );

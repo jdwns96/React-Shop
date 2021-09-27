@@ -7,7 +7,7 @@ import createSagaMiddleware from "redux-saga";
 import { all } from "redux-saga/effects";
 
 // modules && Saga
-import auth, { authSaga } from "./global/auth";
+import auth, { loginSaga } from "./global/auth";
 
 // saga middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
 
 // saga
 function* rootSaga() {
-  yield all([authSaga()]);
+  yield all([loginSaga()]);
 }
 
 //configure with production | development
