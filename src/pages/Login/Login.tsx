@@ -1,16 +1,16 @@
 import React from "react";
 
 // layout
-import AppLayout from "@components/template/AppLayout";
+import LoginLayout from "@components/template/LoginLayout";
 
 //component
 import LoginComponent from "@components/login";
 
 const Login = () => {
   return (
-    <AppLayout>
+    <LoginLayout>
       <LoginComponent />
-    </AppLayout>
+    </LoginLayout>
   );
 };
 

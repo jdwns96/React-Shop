@@ -22,7 +22,8 @@ const SideBar = () => {
           버튼
         </div>
         <div className="sidebar__header">
-          <span>OSS</span>
+          <span>GLE</span>
+          <button>로그아웃</button>
         </div>
         <div className="sidebar__content">
           <div className="dummy"></div>

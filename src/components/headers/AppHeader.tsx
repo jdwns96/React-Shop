@@ -8,7 +8,7 @@ const AppHeader = () => {
     <div className="header" css={header}>
       <div className="header__inner-container">
         <div className="header__title">
-          <span>GLE</span>
+          <span>REACT SHOP</span>
         </div>
       </div>
     </div>
