@@ -1,21 +1,45 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
 const Login = () => {
+  const [form, setForm] = useState({
+    ID: "",
+    PW: "",
+  });
+
+  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm((prevState) => {
+      return {
+        ...prevState,
+        [e.target.name]: e.target.value,
+      };
+    });
+  }, []);
+
+  const onLogin = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      console.log(form.ID, form.PW);
+    },
+    [form],
+  );
+
   return (
-    <form>
+    <form onSubmit={onLogin}>
       <div className="login" css={login}>
         <div className="login__form">
-          <div className="login__title">GLE</div>
+          <div className="login__title">
+            <span>WELCOME!!</span>
+          </div>
           <div className="login__id Input__component">
             <label htmlFor="ID">ID</label>
-            <input type="text" placeholder="ID" id="ID" />
+            <input type="text" placeholder="ID" id="ID" name="ID" onChange={onChange} value={form.ID} />
           </div>
           <div className="login__pw Input__component">
             <label htmlFor="PW">PW</label>
-            <input type="password" placeholder="PASSWORD" id="PW" />
+            <input type="password" placeholder="PASSWORD" id="PW" name="PW" onChange={onChange} value={form.PW} />
           </div>
           <div className="login__submit">
             <input type="submit" value="LOGIN" />
@@ -39,17 +63,25 @@ const login = css`
       border: 2px solid #000;
       border-radius: 3px;
       padding: 1rem;
+      background-color: rgba(209, 250, 229);
+
+      width: 400px;
     }
 
     &__title {
       font-size: 2rem;
       padding: 1rem;
+      overflow: hidden;
+
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
     }
 
     &__submit {
       input {
         width: 100%;
-        padding: 0.5rem;
+        padding: 1rem;
         font-size: 1.5rem;
         border: 2px solid #000;
         background-color: rgba(252, 211, 77);
@@ -77,11 +109,24 @@ const login = css`
       }
 
       label {
-        padding: 0.5rem;
+        position: relative;
+        background-color: rgba(252, 211, 77);
+        padding: 1rem;
         cursor: pointer;
         display: flex;
         justify-content: center;
         align-items: center;
+
+        &::after {
+          content: "";
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          background-color: rgba(252, 211, 77);
+          right: -5px;
+          transform: rotate(45deg);
+          z-index: 1;
+        }
       }
 
       input {
@@ -92,8 +137,8 @@ const login = css`
         position: relative;
         flex: 1 1 auto;
         width: 1%;
-        /* padding: 0.5rem 0.5rem 0.5rem 0; */
-        padding: 0.5rem;
+        padding: 0.5rem 0.5rem 0.5rem 1rem;
+        /* padding: 0.5rem; */
 
         &:focus {
           outline: none;
