@@ -1,13 +1,18 @@
 import React, { useCallback, useState } from "react";
 // Redux
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { authRequestAction } from "@modules/global/auth";
+import type { RootState } from "@modules";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
+// common component
+import Spinner from "@components/common/Spinner";
+
 const Login = () => {
   // Redux
+  const store = useSelector((store: RootState) => store.auth);
   const dispatch = useDispatch();
 
   // state
@@ -16,6 +21,7 @@ const Login = () => {
     PW: "",
   });
 
+  // event handler
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setForm((prevState) => {
       return {
@@ -25,6 +31,7 @@ const Login = () => {
     });
   }, []);
 
+  // event handler
   const onLogin = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -37,6 +44,7 @@ const Login = () => {
 
   return (
     <form onSubmit={onLogin}>
+      {store.isLoading ? <Spinner /> : null}
       <div className="login" css={login}>
         <div className="login__form">
           <div className="login__title">

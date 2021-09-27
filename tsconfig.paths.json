@@ -6,7 +6,9 @@
       "@pages/*": ["./src/pages/*"],
       "@modules/*": ["./src/modules/*"],
       "@components/*": ["./src/components/*"],
-      "@assets/*": ["./src/assets/*"]
+      "@assets/*": ["./src/assets/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@DB/*": ["./src/DB/*"]
     }
   }
 }
