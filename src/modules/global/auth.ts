@@ -49,7 +49,7 @@ export const logoutAction = () => ({ type: LOGOUT });
 
 // middleware
 function* loginMiddleware(action: any) {
-  console.log("auth saga middleware");
+  console.log("login saga middleware");
   try {
     // @ts-ignore
     const response = yield call(loginFetch, action.payload);

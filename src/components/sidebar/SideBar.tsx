@@ -1,9 +1,17 @@
 import React, { useState, useCallback, useEffect } from "react";
 
+// Redux
+import { useDispatch } from "react-redux";
+import { logoutAction } from "@modules/global/auth";
+
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
 const SideBar = () => {
+  // Redux
+  const dispatch = useDispatch();
+
+  // state
   const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
@@ -14,6 +22,10 @@ const SideBar = () => {
     setToggle((prevState) => !prevState);
   }, []);
 
+  const onLogout = useCallback((e: React.MouseEvent) => {
+    dispatch(logoutAction());
+  }, []);
+
   return (
     <>
       <div className={toggle ? "curtain curtain--on" : "curtain"} css={curtain} onClick={onToggle}></div>
@@ -22,14 +34,23 @@ const SideBar = () => {
           버튼
         </div>
         <div className="sidebar__header">
-          <span>GLE</span>
-          <button>로그아웃</button>
+          <div className="sidebar__user">
+            <span>MENU</span>
+          </div>
+          <div className="sidebar__logout-btn" onClick={onLogout}>
+            <span>로그아웃</span>
+          </div>
         </div>
         <div className="sidebar__content">
+          <div className="dummy">
+            <div></div>
+          </div>
+          <div className="dummy"></div>
           <div className="dummy"></div>
           <div className="dummy"></div>
           <div className="dummy"></div>
         </div>
+        <div className="sidebar__footer">구매처</div>
       </div>
     </>
   );
@@ -43,7 +64,10 @@ const sidebar = css`
   height: 100vh;
   z-index: 9999;
   transition: 0.3s;
-  color: #fff;
+  color: #000;
+  border-bottom: 2px solid #000;
+  border-left: 2px solid #000;
+  border-right: 2px solid #000;
 
   &.sidebar--on {
     right: 0;
@@ -55,54 +79,103 @@ const sidebar = css`
         &__button {
           left: 0px;
         }
+
+        &__user {
+          margin-left: 70px;
+          overflow: hidden;
+        }
       }
     }
   }
 
   .sidebar {
     &__button {
-      color: #000;
       cursor: pointer;
       z-index: 9999;
       width: 70px;
       height: 70px;
-      /* background-color: #000; */
-      border-top: 2px solid black;
-      border-left: 2px solid black;
-      border-bottom: 2px solid black;
+      border-top: 2px solid #000;
+      border-left: 2px solid #000;
+      border-bottom: 2px solid #000;
+      /* border: 2px solid #000; */
       background-color: rgba(249, 168, 212);
       position: absolute;
       top: 0;
       left: -70px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     &__header {
       background-color: rgba(249, 168, 212);
-      border-top: 2px solid black;
-      border-right: 2px solid black;
-      border-bottom: 2px solid black;
       width: 100%;
       height: 70px;
       font-size: 2rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 0.75rem;
+      padding: 0.75rem 0 0.75rem 0.75rem;
+      border-top: 2px solid #000;
+      border-bottom: 2px solid #000;
+    }
+
+    &__user {
+      flex-grow: 1;
+      text-align: center;
+
+      & > span:nth-child(1) {
+        color: #000;
+        font-weight: 600;
+        margin-right: 3rem;
+      }
+    }
+
+    &__logout-btn {
+      position: absolute;
+      right: 0;
+      width: 70px;
+      height: 70px;
+      background-color: rgba(252, 211, 77);
+      border: 2px solid #000;
+      border-right: none;
+      /* color: #000; */
+      font-size: 1rem;
+      cursor: pointer;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     &__content {
-      height: calc(100% - 70px);
+      height: calc(80% - 70px);
       overflow-y: auto;
-      border-left: 2px solid #000;
-      border-bottom: 2px solid #000;
-      border-right: 2px solid #000;
+      background-color: #fff;
 
       & > .dummy {
         width: 100%;
-        height: 500px;
-        background-color: rgba(209, 250, 229);
+        height: 200px;
+
         padding: 0.5rem;
+
+        div {
+          background-color: rgba(209, 250, 229);
+          border-radius: 5px;
+          border: 2px solid black;
+          height: 100%;
+        }
       }
+    }
+
+    &__footer {
+      position: absolute;
+      bottom: 0;
+      border-top: 2px solid #000;
+      width: 100%;
+      height: 20%;
+      background-color: rgba(249, 168, 212);
     }
   }
 

@@ -18,8 +18,6 @@ const footer = css`
 
   .footer {
     &__inner-container {
-      /* border-top: 2px solid black;
-      border-bottom: 2px solid black; */
     }
   }
 `;

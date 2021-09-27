@@ -8,7 +8,7 @@ const AppHeader = () => {
     <div className="header" css={header}>
       <div className="header__inner-container">
         <div className="header__title">
-          <span>REACT SHOP</span>
+          <span>GOOLONGE</span>
         </div>
       </div>
     </div>
@@ -35,7 +35,10 @@ const header = css`
       font-size: 2.5rem;
       color: #000;
       font-weight: 600;
-      cursor: pointer;
+
+      span {
+        cursor: pointer;
+      }
     }
   }
 
