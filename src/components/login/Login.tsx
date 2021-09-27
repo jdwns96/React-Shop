@@ -1,9 +1,16 @@
 import React, { useCallback, useState } from "react";
+// Redux
+import { useDispatch } from "react-redux";
+import { authRequestAction } from "@modules/global/auth";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
 const Login = () => {
+  // Redux
+  const dispatch = useDispatch();
+
+  // state
   const [form, setForm] = useState({
     ID: "",
     PW: "",
@@ -21,9 +28,11 @@ const Login = () => {
   const onLogin = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      console.log(form.ID, form.PW);
+
+      // action!
+      dispatch(authRequestAction({ id: form.ID, pw: form.PW }));
     },
-    [form],
+    [form, dispatch],
   );
 
   return (
