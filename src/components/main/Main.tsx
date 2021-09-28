@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
 
+// react-router
+import { useLocation } from "react-router";
+
 //Redux
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "@modules";
@@ -13,8 +16,14 @@ import Card from "./card";
 import Pagination from "./pagination";
 
 const Main = () => {
+  // Redux
   const dispatch = useDispatch();
   const store = useSelector((store: RootState) => store.main);
+
+  // router
+  const location = useLocation();
+  const queryString = location.search.replace("?", "");
+  console.log(queryString);
 
   useEffect(() => {
     dispatch(mainRequestAction());
