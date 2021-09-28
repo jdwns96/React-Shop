@@ -1,4 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+//Redux
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState } from "@modules";
+import { mainRequestAction } from "@modules/main/main";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
@@ -8,15 +13,20 @@ import Card from "./card";
 import Pagination from "./pagination";
 
 const Main = () => {
+  const dispatch = useDispatch();
+  const store = useSelector((store: RootState) => store.main);
+
+  useEffect(() => {
+    dispatch(mainRequestAction());
+  }, []);
+
   return (
     <>
       <div className="main" css={main}>
         <div className="main__inner-container">
-          {Array(8)
-            .fill(0)
-            .map((elem, i) => (
-              <Card number={i} />
-            ))}
+          {store.items.map((elem: any, i: number) => (
+            <Card key={elem.id} data={elem} />
+          ))}
         </div>
       </div>
       <Pagination />

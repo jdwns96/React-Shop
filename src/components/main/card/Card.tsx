@@ -8,7 +8,22 @@ import { css } from "@emotion/react";
 import image from "@assets/images/image1.jpeg";
 import image2 from "@assets/images/image2.jpeg";
 
+type Props = {
+  key: number;
+  data: {
+    id: number;
+    title: string;
+    price: string;
+    img: string;
+    describe: string;
+  };
+};
+
 const Card = (props: any) => {
+  // props
+  const { id, title, price, img, describe } = props.data;
+
+  // router
   const history = useHistory();
 
   const onClickItem = useCallback(
@@ -27,13 +42,10 @@ const Card = (props: any) => {
     <div className="card" css={card} onClick={onClickItem}>
       <div className="card__inner-container">
         <div className="card__img">
-          <img src={props.number % 2 === 0 ? image : image2} alt="" />
+          <img src={img} alt="closet" />
         </div>
-        <p className="card__title">
-          {props.number + 1}
-          티셔츠
-        </p>
-        <p className="card__price">100$</p>
+        <p className="card__title">{title}</p>
+        <p className="card__price">{price}</p>
         <div className="card__button" onClick={onClickBtn}>
           <button>BUY</button>
         </div>

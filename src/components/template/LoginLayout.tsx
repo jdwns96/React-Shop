@@ -7,6 +7,8 @@ import { authRequestAction } from "@modules/global/auth";
 import type { RootState } from "@modules";
 
 // components
+import LoginHeader from "@components/headers/LoginHeader";
+import LoginFooter from "@components/footers/LoginFooter";
 import Spinner from "@components/common/Spinner";
 
 const LoginLayout = ({ children }: { children: JSX.Element }) => {
@@ -26,7 +28,19 @@ const LoginLayout = ({ children }: { children: JSX.Element }) => {
     return <Spinner />;
   }
 
-  return <>{!store.data.isLogin === true ? <>{children}</> : <Redirect from="*" to="/" />}</>;
+  return (
+    <>
+      {!store.data.isLogin === true ? (
+        <>
+          <LoginHeader />
+          {children}
+          <LoginFooter />
+        </>
+      ) : (
+        <Redirect from="*" to="/" />
+      )}
+    </>
+  );
 };
 
 export default LoginLayout;

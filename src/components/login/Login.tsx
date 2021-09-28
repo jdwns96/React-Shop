@@ -5,14 +5,11 @@ import { useHistory } from "react-router";
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
-import { loginRequestAction } from "@modules/global/auth";
 import type { RootState } from "@modules";
+import { loginRequestAction } from "@modules/global/auth";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-
-// common component
-import Spinner from "@components/common/Spinner";
 
 const Login = () => {
   // react-router

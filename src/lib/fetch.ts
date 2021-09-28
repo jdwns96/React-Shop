@@ -1,11 +1,11 @@
-// 가상 데이타
-import { authData } from "@database";
+// data
+import { User, Items } from "@database";
 
 // login 비동기 통신
 export const loginFetch = (payload: any) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const { nickName } = authData;
+      const { nickName } = User;
       resolve({ id: payload.id, nickName: nickName });
     }, 1000);
   });
@@ -15,11 +15,18 @@ export const loginFetch = (payload: any) => {
 export const authFetch = (payload: any) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const { nickName } = authData;
+      const { nickName } = User;
       resolve({ id: payload, nickName: nickName });
     }, 1000);
   });
 };
 
 // items 비동기 통신
-export const itemFetch = () => {};
+export const itemFetch = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      // const { nickName } = Items;
+      resolve(Items);
+    }, 1000);
+  });
+};

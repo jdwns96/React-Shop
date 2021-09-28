@@ -1,8 +1,8 @@
-// Redux saga
-import { put, /*delay,*/ call, takeEvery } from "redux-saga/effects";
-
 // API
 import { loginFetch, authFetch } from "@lib/fetch";
+
+// Redux saga
+import { put, /*delay,*/ call, takeEvery } from "redux-saga/effects";
 
 // type -- state
 type AuthState = {
@@ -64,9 +64,8 @@ function* loginMiddleware(action: any) {
 
 function* authMiddleware() {
   try {
-    const session = localStorage.getItem("Authorization");
-    console.log(session);
-    if (session === "" || session === undefined || session === null) {
+    const Authorization = localStorage.getItem("Authorization");
+    if (Authorization === "" || Authorization === undefined || Authorization === null) {
       // 만약 저장소에 정보가 없다면 이대로 끝낸다.
       // localstorage 에 정보가 없다는건 로그인 상태가 아니라는것.
       yield put(authFailAction());
@@ -74,7 +73,7 @@ function* authMiddleware() {
       // 만약 localstorage 에 정보가 있다면 현제 로그인 상태이므로 서버에 요청해서 store 정보를 받아온다.
       // 이것의 검증 과정은 실제로 복잡할것이다. 서버에서 토큰 일치를 검사해줘서 만료처리, 로그아웃처리 등 선택할 수 있다.
       // @ts-ignore
-      const response = yield call(authFetch, session);
+      const response = yield call(authFetch, Authorization);
       yield put(authSuccessAction(response));
     }
   } catch (e) {
