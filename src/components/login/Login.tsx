@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useRef } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 // react-router
 import { useHistory } from "react-router";
@@ -28,17 +28,11 @@ const Login = () => {
     PW: "",
   });
 
-  // Ref
-  const updateRef = useRef(false);
-
-  // should Update
+  // Mount & Update
   useEffect(() => {
-    if (updateRef.current === true) {
-      if (store.data.isLogin === true) {
-        history.push("/");
-      }
-    } else {
-      updateRef.current = true;
+    // 로그인 정보가 있는경우 메인으로.
+    if (store.data.isLogin === true) {
+      history.push("/");
     }
   }, [store.data.isLogin, history]);
 
@@ -64,27 +58,29 @@ const Login = () => {
   );
 
   return (
-    <form onSubmit={onLogin}>
-      {store.isLoading ? <Spinner /> : null}
-      <div className="login" css={login}>
-        <div className="login__form">
-          <div className="login__title">
-            <span>WELCOME!!</span>
-          </div>
-          <div className="login__id Input__component">
-            <label htmlFor="ID">ID</label>
-            <input type="text" placeholder="ID" id="ID" name="ID" onChange={onChange} value={form.ID} />
-          </div>
-          <div className="login__pw Input__component">
-            <label htmlFor="PW">PW</label>
-            <input type="password" placeholder="PASSWORD" id="PW" name="PW" onChange={onChange} value={form.PW} />
-          </div>
-          <div className="login__submit">
-            <input type="submit" value="LOGIN" />
+    <>
+      <form onSubmit={onLogin}>
+        {store.isLoading ? <Spinner /> : null}
+        <div className="login" css={login}>
+          <div className="login__form">
+            <div className="login__title">
+              <span>WELCOME!!</span>
+            </div>
+            <div className="login__id Input__component">
+              <label htmlFor="ID">ID</label>
+              <input type="text" placeholder="ID" id="ID" name="ID" onChange={onChange} value={form.ID} />
+            </div>
+            <div className="login__pw Input__component">
+              <label htmlFor="PW">PW</label>
+              <input type="password" placeholder="PASSWORD" id="PW" name="PW" onChange={onChange} value={form.PW} />
+            </div>
+            <div className="login__submit">
+              <input type="submit" value="LOGIN" />
+            </div>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </>
   );
 };
 

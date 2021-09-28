@@ -7,6 +7,8 @@ import { logoutAction } from "@modules/global/auth";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
+import Card from "./card";
+
 const SideBar = () => {
   // Redux
   const dispatch = useDispatch();
@@ -34,7 +36,7 @@ const SideBar = () => {
           HBG
         </div>
         <div className="sidebar__header">
-          <div className="sidebar__user">
+          <div className="sidebar__title">
             <span>MENU</span>
           </div>
           <div className="sidebar__logout-btn" onClick={onLogout}>
@@ -42,13 +44,12 @@ const SideBar = () => {
           </div>
         </div>
         <div className="sidebar__content">
-          <div className="dummy">
-            <div></div>
-          </div>
-          <div className="dummy"></div>
-          <div className="dummy"></div>
-          <div className="dummy"></div>
-          <div className="dummy"></div>
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
         </div>
         <div className="sidebar__footer">
           <div className="sidebar__total">
@@ -86,7 +87,7 @@ const sidebar = css`
           left: 0px;
         }
 
-        &__user {
+        &__title {
           margin-left: 70px;
           overflow: hidden;
         }
@@ -108,10 +109,12 @@ const sidebar = css`
       position: absolute;
       top: 0;
       left: -70px;
-
       display: flex;
       justify-content: center;
       align-items: center;
+      &:hover {
+        color: #fff;
+      }
     }
 
     &__header {
@@ -127,14 +130,15 @@ const sidebar = css`
       border-bottom: 2px solid #000;
     }
 
-    &__user {
+    &__title {
       flex-grow: 1;
       text-align: center;
 
-      & > span:nth-child(1) {
+      & > span {
         color: #000;
         font-weight: 600;
         margin-right: 3rem;
+        cursor: pointer;
       }
     }
 
@@ -152,26 +156,15 @@ const sidebar = css`
       display: flex;
       justify-content: center;
       align-items: center;
+      &:hover {
+        color: #fff;
+      }
     }
 
     &__content {
       height: calc(80% - 70px);
       overflow-y: auto;
       background-color: #fff;
-
-      & > .dummy {
-        width: 100%;
-        height: 200px;
-
-        padding: 0.5rem;
-
-        div {
-          background-color: rgba(209, 250, 229);
-          border-radius: 5px;
-          border: 2px solid black;
-          height: 100%;
-        }
-      }
     }
 
     &__footer {

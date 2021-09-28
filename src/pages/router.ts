@@ -24,7 +24,7 @@ const router: Router[] = [
     id: 3,
     exact: true,
     path: "/detail",
-    component: pages.Login,
+    component: pages.Detail,
   },
 ];
 

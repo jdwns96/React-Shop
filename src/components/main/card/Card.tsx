@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useCallback } from "react";
+
+import { useHistory } from "react-router";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
@@ -7,8 +9,22 @@ import image from "@assets/images/image1.jpeg";
 import image2 from "@assets/images/image2.jpeg";
 
 const Card = (props: any) => {
+  const history = useHistory();
+
+  const onClickItem = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      history.push("/detail");
+    },
+    [history],
+  );
+
+  const onClickBtn = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+  }, []);
+
   return (
-    <div className="card" css={card}>
+    <div className="card" css={card} onClick={onClickItem}>
       <div className="card__inner-container">
         <div className="card__img">
           <img src={props.number % 2 === 0 ? image : image2} alt="" />
@@ -18,7 +34,7 @@ const Card = (props: any) => {
           티셔츠
         </p>
         <p className="card__price">100$</p>
-        <div className="card__button">
+        <div className="card__button" onClick={onClickBtn}>
           <button>BUY</button>
         </div>
       </div>

@@ -37,12 +37,6 @@ const pagi = css`
     &__inner-container {
       width: 60%;
       height: 70px;
-
-      /* background-color: rgba(252, 211, 77); */
-      /* background-color: rgba(52, 211, 153); */
-      /* background-color: rgba(139, 92, 246); */
-      /* background-color: rgba(249, 168, 212); */
-      /* background-color: rgba(4,120,87); */
       background-color: rgba(209, 250, 229);
       border: 2px solid #000;
       border-radius: 3px;
@@ -51,6 +45,7 @@ const pagi = css`
       justify-content: center;
       align-items: center;
       z-index: 999;
+      overflow-x: auto;
     }
 
     &__ball {

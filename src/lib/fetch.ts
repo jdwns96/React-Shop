@@ -1,5 +1,5 @@
-// 가상 서버
-import { authData } from "@DB";
+// 가상 데이타
+import { authData } from "@database";
 
 // login 비동기 통신
 export const loginFetch = (payload: any) => {
@@ -7,6 +7,16 @@ export const loginFetch = (payload: any) => {
     setTimeout(() => {
       const { nickName } = authData;
       resolve({ id: payload.id, nickName: nickName });
+    }, 1000);
+  });
+};
+
+// auth 비동기 통신
+export const authFetch = (payload: any) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const { nickName } = authData;
+      resolve({ id: payload, nickName: nickName });
     }, 1000);
   });
 };
