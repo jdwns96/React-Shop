@@ -12,14 +12,14 @@ const MAIN_REQUEST = "main/MAIN_REQUEST" as const;
 const MAIN_SUCCESS = "main/MAIN_SUCCESS" as const;
 const MAIN_FAIL = "main/MAIN_FAIL" as const;
 
-export const mainRequestAction = () => ({ type: MAIN_REQUEST });
+export const mainRequestAction = (payload: number) => ({ type: MAIN_REQUEST, payload });
 export const mainSuccessAction = (payload: any) => ({ type: MAIN_SUCCESS, payload });
 export const mainFailAction = () => ({ type: MAIN_FAIL });
 
-function* mainMiddleware() {
+function* mainMiddleware(action: any) {
   try {
     // @ts-ignore
-    const items = yield call(itemFetch);
+    const items = yield call(itemFetch, action.payload);
     yield put(mainSuccessAction(items));
   } catch (e) {
     yield put(mainFailAction());

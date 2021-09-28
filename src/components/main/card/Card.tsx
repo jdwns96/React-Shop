@@ -5,9 +5,6 @@ import { useHistory } from "react-router";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-import image from "@assets/images/image1.jpeg";
-import image2 from "@assets/images/image2.jpeg";
-
 type Props = {
   key: number;
   data: {
@@ -19,9 +16,9 @@ type Props = {
   };
 };
 
-const Card = (props: any) => {
+const Card = (props: Props) => {
   // props
-  const { id, title, price, img, describe } = props.data;
+  const { id, title, price, img } = props.data;
 
   // router
   const history = useHistory();
@@ -29,9 +26,9 @@ const Card = (props: any) => {
   const onClickItem = useCallback(
     (e: React.MouseEvent) => {
       e.stopPropagation();
-      history.push("/detail");
+      history.push(`/detail/${id}`);
     },
-    [history],
+    [history, id],
   );
 
   const onClickBtn = useCallback((e: React.MouseEvent) => {
@@ -78,8 +75,6 @@ const card = css`
       font-size: 1rem;
       text-align: center;
       padding: 1rem 0;
-
-      /* background-color: rgba(4, 120, 87); */
     }
 
     &__img {

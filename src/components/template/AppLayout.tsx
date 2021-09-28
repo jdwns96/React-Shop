@@ -18,7 +18,6 @@ const AppLayout = ({ children }: { children: JSX.Element }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("APP LAYOUT HOOKS");
     if (store.isVerification === false) {
       // 검증을 받아야한다.
       dispatch(authRequestAction());

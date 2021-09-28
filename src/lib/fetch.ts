@@ -5,9 +5,8 @@ import { User, Items } from "@database";
 export const loginFetch = (payload: any) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const { nickName } = User;
-      resolve({ id: payload.id, nickName: nickName });
-    }, 1000);
+      resolve({ id: payload.id, nickName: User.nickName });
+    }, 500);
   });
 };
 
@@ -15,18 +14,21 @@ export const loginFetch = (payload: any) => {
 export const authFetch = (payload: any) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const { nickName } = User;
-      resolve({ id: payload, nickName: nickName });
-    }, 1000);
+      resolve({ id: payload, nickName: User.nickName });
+    }, 500);
   });
 };
 
 // items 비동기 통신
-export const itemFetch = () => {
+export const itemFetch = (payload: number) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      // const { nickName } = Items;
-      resolve(Items);
-    }, 1000);
+      const page = payload;
+      console.log(page);
+
+      // db 쿼리 역할
+      const findItems = Items.slice((page - 1) * 8, page * 8);
+      resolve(findItems);
+    }, 500);
   });
 };

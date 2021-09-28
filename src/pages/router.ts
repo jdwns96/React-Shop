@@ -11,7 +11,7 @@ const router: Router[] = [
   {
     id: 1,
     exact: true,
-    path: ["/", "/main", "/main?page=1"],
+    path: ["/", "/main"],
     component: pages.Main,
   },
   {
@@ -23,7 +23,7 @@ const router: Router[] = [
   {
     id: 3,
     exact: true,
-    path: "/detail",
+    path: "/detail/:id",
     component: pages.Detail,
   },
 ];

@@ -15,18 +15,31 @@ import { css } from "@emotion/react";
 import Card from "./card";
 import Pagination from "./pagination";
 
+// function
+const queryString = (qs: string): number => {
+  let response;
+
+  const val = qs.replace("?", "");
+  const arr = val.split("=");
+  const temp = parseInt(arr[arr.indexOf("page") + 1]);
+  isNaN(temp) ? (response = 1) : (response = temp);
+
+  return response;
+};
+
 const Main = () => {
   // Redux
   const dispatch = useDispatch();
   const store = useSelector((store: RootState) => store.main);
 
   // router
-  const location = useLocation();
-  const queryString = location.search.replace("?", "");
-  console.log(queryString);
+  const location = useLocation(); // location hooks
+
+  // external function
+  const page = queryString(location.search);
 
   useEffect(() => {
-    dispatch(mainRequestAction());
+    dispatch(mainRequestAction(page));
   }, []);
 
   return (
