@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Redirect } from "react-router-dom";
 
 // Redux
@@ -16,8 +16,8 @@ const LoginLayout = ({ children }: { children: JSX.Element }) => {
 
   useEffect(() => {
     console.log("LOGIN LAYOUT HOOKS");
-    if (store.data.isLogin === false) {
-      // 스토어에 값이 없다면 로그인 상태인지 아닌지 검증을 받아야한다.
+    if (store.isVerification === false) {
+      // 검증을 받아야한다.
       dispatch(authRequestAction());
     }
   }, []);

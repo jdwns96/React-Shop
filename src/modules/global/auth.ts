@@ -6,7 +6,6 @@ import { loginFetch, authFetch } from "@lib/fetch";
 
 // type -- state
 type AuthState = {
-  isLoading: boolean; // 서버 통신간 사용하는 store (로그인때 사용하는 store)
   isVerification: boolean; // 새로고침 & 최초 랜더링시 로그인 정보를 확인하는 store (검증할때 사용하는 store)
   data: {
     id: string;
@@ -91,7 +90,6 @@ export function* loginSaga() {
 
 // state
 const initialState: AuthState = {
-  isLoading: false,
   isVerification: false,
   data: {
     id: "",
@@ -107,7 +105,7 @@ const reducer = (state: AuthState = initialState, action: AuthAction) => {
     case LOGIN_REQUEST:
       return {
         ...state,
-        isLoading: true,
+        isVerification: false,
         data: {
           ...state.data,
           id: "",
@@ -119,7 +117,6 @@ const reducer = (state: AuthState = initialState, action: AuthAction) => {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        isLoading: false,
         isVerification: true,
         data: {
           ...state.data,
@@ -133,7 +130,6 @@ const reducer = (state: AuthState = initialState, action: AuthAction) => {
     case LOGOUT:
       localStorage.removeItem("Authorization");
       return {
-        isLoading: false,
         isVerification: true,
         data: {
           ...state.data,

@@ -50,7 +50,6 @@ const Login = () => {
   const onLogin = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-
       // action!
       dispatch(loginRequestAction({ id: form.ID, pw: form.PW }));
     },
@@ -60,7 +59,6 @@ const Login = () => {
   return (
     <>
       <form onSubmit={onLogin}>
-        {store.isLoading ? <Spinner /> : null}
         <div className="login" css={login}>
           <div className="login__form">
             <div className="login__title">
