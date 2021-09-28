@@ -38,8 +38,6 @@ const pagi = css`
       width: 60%;
       height: 70px;
 
-      /* position: sticky;
-      bottom: 0; */
       /* background-color: rgba(252, 211, 77); */
       /* background-color: rgba(52, 211, 153); */
       /* background-color: rgba(139, 92, 246); */

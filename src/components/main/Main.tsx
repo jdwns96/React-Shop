@@ -4,8 +4,8 @@ import React from "react";
 import { css } from "@emotion/react";
 
 // child component
-import Card from "./Card";
-import Pagination from "./Pagination";
+import Card from "./card";
+import Pagination from "./pagination";
 
 const Main = () => {
   return (

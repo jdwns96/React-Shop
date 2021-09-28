@@ -31,14 +31,14 @@ const SideBar = () => {
       <div className={toggle ? "curtain curtain--on" : "curtain"} css={curtain} onClick={onToggle}></div>
       <div className={toggle ? "sidebar sidebar--on" : "sidebar"} css={sidebar}>
         <div className="sidebar__button" onClick={onToggle}>
-          버튼
+          HBG
         </div>
         <div className="sidebar__header">
           <div className="sidebar__user">
             <span>MENU</span>
           </div>
           <div className="sidebar__logout-btn" onClick={onLogout}>
-            <span>로그아웃</span>
+            <span>EXIT</span>
           </div>
         </div>
         <div className="sidebar__content">
@@ -50,7 +50,13 @@ const SideBar = () => {
           <div className="dummy"></div>
           <div className="dummy"></div>
         </div>
-        <div className="sidebar__footer">구매처</div>
+        <div className="sidebar__footer">
+          <div className="sidebar__total">
+            <p>Total</p>
+            <p>100$</p>
+          </div>
+          <div className="sidebar__check-out">CHECK OUT</div>
+        </div>
       </div>
     </>
   );
@@ -140,7 +146,6 @@ const sidebar = css`
       background-color: rgba(252, 211, 77);
       border: 2px solid #000;
       border-right: none;
-      /* color: #000; */
       font-size: 1rem;
       cursor: pointer;
 
@@ -176,6 +181,44 @@ const sidebar = css`
       width: 100%;
       height: 20%;
       background-color: rgba(249, 168, 212);
+      padding: 1rem;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__total {
+      flex-grow: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      & > p:nth-child(1) {
+        font-weight: 600;
+        font-size: 1.75rem;
+      }
+
+      & > p:nth-child(2) {
+        font-weight: 600;
+        font-size: 1.25rem;
+        color: #fff;
+      }
+    }
+
+    &__check-out {
+      flex-grow: 1;
+      background-color: rgba(252, 211, 77);
+      border-radius: 2px;
+      border: 2px solid #000;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.25rem;
+      font-weight: 600;
+      &:hover {
+        color: #fff;
+      }
     }
   }
 
