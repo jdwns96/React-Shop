@@ -23,7 +23,7 @@ export type CardProps = {
   describe: string;
 };
 
-// queryString functio
+// @queryString function
 const queryString = (qs: string): number => {
   let response;
   const val = qs.replace("?", "");
@@ -55,7 +55,7 @@ const Main = () => {
   return (
     <>
       {page <= 0 && <Redirect from="*" to="/" />}
-      {page > 99 && <Redirect from="*" to="/" />}
+      {currentPage > totalPage && <Redirect from="*" to="/" />}
       <div className="main" css={main}>
         <div className="main__inner-container">
           {items.map((elem: CardProps, i: number) => (

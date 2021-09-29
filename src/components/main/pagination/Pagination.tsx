@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useHistory } from "react-router";
 
 /** @jsxImportSource @emotion/react */
@@ -9,24 +9,55 @@ type Props = {
   totalPage: number;
 };
 
+// @pagination Function
+const setPagiNation = (currentPage: number, totalPage: number) => {
+  let result;
+  const tempArray = Array(totalPage < 5 ? totalPage : 5).fill(0);
+  if (currentPage < 5 / 2) {
+    /* 1, 2 */
+    // result = [1, 2, 3, 4, 5];
+    result = tempArray.map((_, i) => i + 1);
+  } else if (currentPage > totalPage - 5 / 2) {
+    /* n-1, n */
+    // result = [n-4, n-3 ,n-2 ,n-1, n];
+    result = tempArray.map((_, i) => totalPage - i).reverse();
+  } else {
+    /* else */
+    // result = [n-2, n-1 , n ,n+1, n+2];
+    result = tempArray.map((_, i) => currentPage + (i - 2));
+  }
+  return result;
+};
+
 const Pagination = (props: Props) => {
   const { currentPage, totalPage } = props;
 
   const history = useHistory();
 
-  const onLeftClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    history.push(`/main?page=${currentPage - 1}`);
-  };
+  // Handler
+  const onLeftClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      history.push(`/main?page=${currentPage - 1}`);
+    },
+    [history, currentPage],
+  );
 
-  const onRightClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    history.push(`/main?page=${currentPage + 1}`);
-  };
+  const onRightClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      history.push(`/main?page=${currentPage + 1}`);
+    },
+    [history, currentPage],
+  );
 
-  const onPageClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-  };
+  const onPageClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      history.push(`/main?page=${parseInt((e.target as HTMLElement).textContent!)}`);
+    },
+    [history],
+  );
 
   //@반응형 페이지 네이션
   return (
@@ -36,11 +67,11 @@ const Pagination = (props: Props) => {
           <div className="pagi__ball" onClick={onLeftClick}>
             <span>{"<"}</span>
           </div>
-          <div className="pagi__ball">{"1"}</div>
-          <div className="pagi__ball">{"2"}</div>
-          <div className="pagi__ball">{"3"}</div>
-          <div className="pagi__ball">{"4"}</div>
-          <div className="pagi__ball">{"5"}</div>
+          {setPagiNation(currentPage, totalPage).map((elem, _) => (
+            <div className={elem === currentPage ? "pagi__ball pagi__ball--on" : "pagi__ball"} onClick={onPageClick}>
+              {elem}
+            </div>
+          ))}
           <div className="pagi__ball" onClick={onRightClick}>
             <span>{">"}</span>
           </div>
@@ -93,6 +124,11 @@ const pagi = css`
 
       &:hover {
         color: white;
+      }
+
+      &--on {
+        color: #fff;
+        background-color: rgb(249, 168, 212);
       }
     }
   }
