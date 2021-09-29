@@ -7,6 +7,7 @@ import { useLocation, Redirect } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "@modules";
 import { mainRequestAction } from "@modules/main/main";
+import type { Item } from "@modules/main/main";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
@@ -14,14 +15,6 @@ import { css } from "@emotion/react";
 // child component
 import Card from "./card";
 import Pagination from "./pagination";
-
-export type CardProps = {
-  id: number;
-  title: string;
-  price: string;
-  img: string;
-  describe: string;
-};
 
 // @queryString function
 const queryString = (qs: string): number => {
@@ -58,7 +51,7 @@ const Main = () => {
       {currentPage > totalPage && <Redirect from="*" to="/" />}
       <div className="main" css={main}>
         <div className="main__inner-container">
-          {items.map((elem: CardProps, i: number) => (
+          {items.map((elem: Item, i: number) => (
             <Card key={elem.id} data={elem} />
           ))}
         </div>

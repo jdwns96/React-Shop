@@ -26,7 +26,7 @@ ReactDOM.render(
           {router.map((elem, i) => (
             <Route exact={elem.exact} path={elem.path} component={elem.component} />
           ))}
-          <Redirect from="*" to="/main?page=1" />
+          <Redirect from="*" to="/" />
         </Switch>
       </BrowserRouter>
     </Provider>

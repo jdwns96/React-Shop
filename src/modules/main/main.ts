@@ -1,6 +1,5 @@
-import { itemFetch } from "@lib/fetch";
-
 import { call, put, takeEvery } from "@redux-saga/core/effects";
+import { itemFetch } from "@lib/fetch";
 
 type MainAction = ReturnType<typeof mainRequestAction> | ReturnType<typeof mainSuccessAction> | ReturnType<typeof mainFailAction>;
 type MainState = {
@@ -8,7 +7,14 @@ type MainState = {
 
   currentPage: number; // 현재 페이지
   totalPage: number; // 전체 페이지
-  items: object[]; // item list
+  items: Item[]; // item list
+};
+export type Item = {
+  id: number;
+  title: string;
+  price: string;
+  img: string;
+  describe: string;
 };
 
 const MAIN_REQUEST = "main/MAIN_REQUEST" as const;

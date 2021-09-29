@@ -1,5 +1,5 @@
 // data
-import { User, Items } from "@database";
+import { User, Items } from "@api";
 
 // login 비동기 통신
 export const loginFetch = (payload: any) => {
@@ -34,6 +34,19 @@ export const itemFetch = (payload: number) => {
         currentPage,
         totalPage,
       };
+      resolve(response);
+    }, 100);
+  });
+};
+
+// detail
+export const detailFetch = (payload: number) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const id = payload;
+      console.log(id);
+      const response = Items.find((elem) => elem.id === id);
+      console.log(response);
       resolve(response);
     }, 100);
   });

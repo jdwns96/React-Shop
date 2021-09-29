@@ -5,10 +5,11 @@ import { useHistory } from "react-router";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-import type { CardProps } from "../Main";
+import type { Item } from "@modules/main/main";
+
 type Props = {
   key: number;
-  data: CardProps;
+  data: Item;
 };
 
 const Card = (props: Props) => {
