@@ -25,10 +25,16 @@ export const itemFetch = (payload: number) => {
     setTimeout(() => {
       const page = payload;
       console.log(page);
-
       // db 쿼리 역할
-      const findItems = Items.slice((page - 1) * 8, page * 8);
-      resolve(findItems);
-    }, 500);
+      const findItems = Items.slice((page - 1) * 8, page * 8); // 현제 보고있는 데이터
+      const currentPage = page;
+      const totalPage = Math.ceil(Items.length / 8);
+      const response = {
+        Items: findItems,
+        currentPage,
+        totalPage,
+      };
+      resolve(response);
+    }, 100);
   });
 };

@@ -20,10 +20,12 @@ const SideBar = () => {
     toggle ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset");
   }, [toggle]);
 
+  // hamberger 토글 버튼
   const onToggle = useCallback((e: React.MouseEvent) => {
     setToggle((prevState) => !prevState);
   }, []);
 
+  // 로그아웃 버튼
   const onLogout = useCallback((e: React.MouseEvent) => {
     dispatch(logoutAction());
   }, []);

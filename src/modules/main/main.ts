@@ -5,7 +5,10 @@ import { call, put, takeEvery } from "@redux-saga/core/effects";
 type MainAction = ReturnType<typeof mainRequestAction> | ReturnType<typeof mainSuccessAction> | ReturnType<typeof mainFailAction>;
 type MainState = {
   isLoading: boolean;
-  items: object[];
+
+  currentPage: number; // 현재 페이지
+  totalPage: number; // 전체 페이지
+  items: object[]; // item list
 };
 
 const MAIN_REQUEST = "main/MAIN_REQUEST" as const;
@@ -32,6 +35,9 @@ export function* mainSaga() {
 
 const initialState: MainState = {
   isLoading: false,
+
+  currentPage: 1,
+  totalPage: 1,
   items: [],
 };
 
@@ -41,18 +47,21 @@ const reducer = (state: MainState = initialState, action: MainAction) => {
       return {
         ...state,
         isLoading: true,
-        items: [],
       };
     case MAIN_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        items: action.payload,
+        currentPage: action.payload.currentPage,
+        totalPage: action.payload.totalPage,
+        items: action.payload.Items,
       };
     case MAIN_FAIL:
       return {
         ...state,
         isLoading: false,
+        currentPage: 1,
+        totalPage: 1,
         items: [],
       };
     default:

@@ -5,15 +5,10 @@ import { useHistory } from "react-router";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
+import type { CardProps } from "../Main";
 type Props = {
   key: number;
-  data: {
-    id: number;
-    title: string;
-    price: string;
-    img: string;
-    describe: string;
-  };
+  data: CardProps;
 };
 
 const Card = (props: Props) => {

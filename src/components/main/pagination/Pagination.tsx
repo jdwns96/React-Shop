@@ -1,22 +1,49 @@
 import React from "react";
+import { useHistory } from "react-router";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-const Pagination = () => {
+type Props = {
+  currentPage: number;
+  totalPage: number;
+};
+
+const Pagination = (props: Props) => {
+  const { currentPage, totalPage } = props;
+
+  const history = useHistory();
+
+  const onLeftClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    history.push(`/main?page=${currentPage - 1}`);
+  };
+
+  const onRightClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    history.push(`/main?page=${currentPage + 1}`);
+  };
+
+  const onPageClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
   //@반응형 페이지 네이션
   return (
     <>
       <div className="pagi" css={pagi}>
         <div className="pagi__inner-container">
-          <div className="pagi__ball">{"<"}</div>
+          <div className="pagi__ball" onClick={onLeftClick}>
+            <span>{"<"}</span>
+          </div>
           <div className="pagi__ball">{"1"}</div>
           <div className="pagi__ball">{"2"}</div>
           <div className="pagi__ball">{"3"}</div>
           <div className="pagi__ball">{"4"}</div>
           <div className="pagi__ball">{"5"}</div>
-          <div className="pagi__ball">{"..."}</div>
-          <div className="pagi__ball">{">"}</div>
+          <div className="pagi__ball" onClick={onRightClick}>
+            <span>{">"}</span>
+          </div>
         </div>
       </div>
     </>
