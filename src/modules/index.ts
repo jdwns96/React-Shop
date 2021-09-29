@@ -27,11 +27,11 @@ function* rootSaga() {
 }
 
 //configure with production | development
-const configMiddlewrare = (...args: any) => {
+const configMiddlewrare = (args: typeof sagaMiddleware) => {
   if (process.env.NODE_ENV === "production") {
-    return compose(applyMiddleware(...args));
+    return compose(applyMiddleware(args));
   } else {
-    return composeWithDevTools(applyMiddleware(...args));
+    return composeWithDevTools(applyMiddleware(args));
   }
 };
 

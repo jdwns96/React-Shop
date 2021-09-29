@@ -15,7 +15,7 @@ export const detailRequestAction = (payload: number) => ({ type: DETAIL_REQUEST,
 export const detailSuccessAction = (payload: object) => ({ type: DETAIL_SUCCESS, payload });
 export const detailFailAction = () => ({ type: DETAIL_FAIL });
 
-function* detailMiddleware(action: any) {
+function* detailMiddleware(action: DetailAction) {
   try {
     // @ts-ignore
     const detail = yield call(detailFetch, action.payload);

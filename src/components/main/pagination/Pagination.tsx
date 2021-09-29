@@ -68,7 +68,7 @@ const Pagination = (props: Props) => {
             <span>{"<"}</span>
           </div>
           {setPagiNation(currentPage, totalPage).map((elem, _) => (
-            <div className={elem === currentPage ? "pagi__ball pagi__ball--on" : "pagi__ball"} onClick={onPageClick}>
+            <div className={elem === currentPage ? "pagi__ball pagi__ball--on" : "pagi__ball"} onClick={onPageClick} key={elem}>
               {elem}
             </div>
           ))}

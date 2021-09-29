@@ -22,11 +22,12 @@ const MAIN_SUCCESS = "main/MAIN_SUCCESS" as const;
 const MAIN_FAIL = "main/MAIN_FAIL" as const;
 
 export const mainRequestAction = (payload: number) => ({ type: MAIN_REQUEST, payload });
-export const mainSuccessAction = (payload: any) => ({ type: MAIN_SUCCESS, payload });
+export const mainSuccessAction = (payload: { Items: Item[]; currentPage: number; totalPage: number }) => ({ type: MAIN_SUCCESS, payload });
 export const mainFailAction = () => ({ type: MAIN_FAIL });
 
-function* mainMiddleware(action: any) {
+function* mainMiddleware(action: MainAction) {
   try {
+    // @TODO how can I set Type in generator ???
     // @ts-ignore
     const items = yield call(itemFetch, action.payload);
     yield put(mainSuccessAction(items));
@@ -53,13 +54,14 @@ const reducer = (state: MainState = initialState, action: MainAction) => {
       return {
         ...state,
         isLoading: true,
+        items: [],
       };
     case MAIN_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        currentPage: action.payload.currentPage,
-        totalPage: action.payload.totalPage,
+        currentPage: action.payload.currentPage as number,
+        totalPage: action.payload.totalPage as number,
         items: action.payload.Items,
       };
     case MAIN_FAIL:

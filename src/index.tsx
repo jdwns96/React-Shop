@@ -21,10 +21,10 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <GlobalStyle />
-        {console.log("================================\nmade by GLE ^오^\n================================")}
+        {console.log("made by GLE")}
         <Switch>
           {router.map((elem, i) => (
-            <Route exact={elem.exact} path={elem.path} component={elem.component} />
+            <Route exact={elem.exact} path={elem.path} component={elem.component} key={elem.id} />
           ))}
           <Redirect from="*" to="/" />
         </Switch>

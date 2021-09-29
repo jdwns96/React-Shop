@@ -48,7 +48,7 @@ export const authFailAction = () => ({ type: AUTH_FAIL });
 export const logoutAction = () => ({ type: LOGOUT });
 
 // middleware
-function* loginMiddleware(action: any) {
+function* loginMiddleware(action: AuthAction) {
   try {
     // 로그인 성공시 localstorage 에 계정 정보를 저장한다.
     // 이러한 방식은 JWT 에서 사용된다.

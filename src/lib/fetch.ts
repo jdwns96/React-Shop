@@ -1,8 +1,8 @@
-// data
+// api sercer
 import { User, Items } from "@api";
 
-// login 비동기 통신
-export const loginFetch = (payload: any) => {
+// app.post("/login")
+export const loginFetch = (payload: { id: string; pw: string }) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve({ id: payload.id, nickName: User.nickName });
@@ -10,8 +10,8 @@ export const loginFetch = (payload: any) => {
   });
 };
 
-// auth 비동기 통신
-export const authFetch = (payload: any) => {
+// app.post("/auth")
+export const authFetch = (payload: string) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve({ id: payload, nickName: User.nickName });
@@ -19,7 +19,7 @@ export const authFetch = (payload: any) => {
   });
 };
 
-// items 비동기 통신
+// app.get("/items")
 export const itemFetch = (payload: number) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -39,7 +39,7 @@ export const itemFetch = (payload: number) => {
   });
 };
 
-// detail
+// app.get("/")
 export const detailFetch = (payload: number) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
