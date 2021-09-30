@@ -5,11 +5,13 @@ import { useHistory } from "react-router";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-import type { Item } from "@modules/main/main";
+import type { RootState } from "@modules";
+
+type GetElementType<T extends any[]> = T extends (infer U)[] ? U : never;
 
 type Props = {
   key: number;
-  data: Item;
+  data: GetElementType<RootState["main"]["items"]>;
 };
 
 const Card = (props: Props) => {
@@ -40,7 +42,8 @@ const Card = (props: Props) => {
         <p className="card__title">{title}</p>
         <p className="card__price">{price}</p>
         <div className="card__button" onClick={onClickBtn}>
-          <button>BUY</button>
+          <button>CART</button>
+          <button>DETAIL</button>
         </div>
       </div>
     </div>
@@ -96,13 +99,15 @@ const card = css`
     }
 
     &__button {
+      display: flex;
+      justify-content: space-around;
       button {
         /* transition: 0.2s; */
         border: 2px solid black;
         border-radius: 3px;
         font-size: 1.5rem;
         padding: 0.5rem;
-        width: 100%;
+        width: 48%;
         cursor: pointer;
         background-color: rgba(252, 211, 77);
 

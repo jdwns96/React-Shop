@@ -9,7 +9,7 @@ type MainState = {
   totalPage: number; // 전체 페이지
   items: Item[]; // item list
 };
-export type Item = {
+type Item = {
   id: number;
   title: string;
   price: string;
