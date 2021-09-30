@@ -35,7 +35,7 @@ export const itemFetch = (payload: number) => {
         totalPage,
       };
       resolve(response);
-    }, 100);
+    }, 0);
   });
 };
 
@@ -48,6 +48,6 @@ export const detailFetch = (payload: number) => {
       const response = Items.find((elem) => elem.id === id);
       console.log(response);
       resolve(response);
-    }, 100);
+    }, 0);
   });
 };

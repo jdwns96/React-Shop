@@ -1,9 +1,13 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 
 import { useHistory } from "react-router";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+
+// font awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 import type { RootState } from "@modules";
 
@@ -42,8 +46,22 @@ const Card = (props: Props) => {
         <p className="card__title">{title}</p>
         <p className="card__price">{price}</p>
         <div className="card__button" onClick={onClickBtn}>
-          <button>CART</button>
-          <button>DETAIL</button>
+          <button>
+            {useMemo(
+              () => (
+                <FontAwesomeIcon icon={faSearch} />
+              ),
+              [],
+            )}
+          </button>
+          <button>
+            {useMemo(
+              () => (
+                <FontAwesomeIcon icon={faShoppingCart} />
+              ),
+              [],
+            )}
+          </button>
         </div>
       </div>
     </div>
@@ -105,11 +123,16 @@ const card = css`
         /* transition: 0.2s; */
         border: 2px solid black;
         border-radius: 3px;
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         padding: 0.5rem;
         width: 48%;
         cursor: pointer;
         background-color: rgba(252, 211, 77);
+        overflow: hidden;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         &:hover {
           color: #fff;

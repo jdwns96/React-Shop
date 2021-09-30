@@ -54,14 +54,14 @@ const reducer = (state: MainState = initialState, action: MainAction) => {
       return {
         ...state,
         isLoading: true,
-        items: [],
+        // items: [], 데이터가 부드럽지않음
       };
     case MAIN_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        currentPage: action.payload.currentPage as number,
-        totalPage: action.payload.totalPage as number,
+        currentPage: action.payload.currentPage,
+        totalPage: action.payload.totalPage,
         items: action.payload.Items,
       };
     case MAIN_FAIL:

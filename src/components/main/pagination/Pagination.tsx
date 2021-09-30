@@ -1,8 +1,12 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useHistory } from "react-router";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+
+// font awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   currentPage: number;
@@ -65,7 +69,12 @@ const Pagination = (props: Props) => {
       <div className="pagi" css={pagi}>
         <div className="pagi__inner-container">
           <div className="pagi__ball" onClick={onLeftClick}>
-            <span>{"<"}</span>
+            {useMemo(
+              () => (
+                <FontAwesomeIcon icon={faChevronLeft} />
+              ),
+              [],
+            )}
           </div>
           {setPagiNation(currentPage, totalPage).map((elem, _) => (
             <div className={elem === currentPage ? "pagi__ball pagi__ball--on" : "pagi__ball"} onClick={onPageClick} key={elem}>
@@ -73,7 +82,12 @@ const Pagination = (props: Props) => {
             </div>
           ))}
           <div className="pagi__ball" onClick={onRightClick}>
-            <span>{">"}</span>
+            {useMemo(
+              () => (
+                <FontAwesomeIcon icon={faChevronRight} />
+              ),
+              [],
+            )}
           </div>
         </div>
       </div>

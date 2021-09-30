@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 
 // Redux
 import { useDispatch } from "react-redux";
@@ -6,6 +6,10 @@ import { logoutAction } from "@modules/global/auth";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+
+// font awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHamburger, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 import Card from "./card";
 
@@ -34,15 +38,25 @@ const SideBar = () => {
     <>
       <div className={toggle ? "curtain curtain--on" : "curtain"} css={curtain} onClick={onToggle}></div>
       <div className={toggle ? "sidebar sidebar--on" : "sidebar"} css={sidebar}>
-        <div className="sidebar__button" onClick={onToggle}>
-          HBG
+        <div className="sidebar__hamburger" onClick={onToggle}>
+          {useMemo(
+            () => (
+              <FontAwesomeIcon icon={faHamburger} />
+            ),
+            [],
+          )}
         </div>
         <div className="sidebar__header">
           <div className="sidebar__title">
             <span>MENU</span>
           </div>
           <div className="sidebar__logout-btn" onClick={onLogout}>
-            <span>EXIT</span>
+            {useMemo(
+              () => (
+                <FontAwesomeIcon icon={faSignOutAlt} />
+              ),
+              [],
+            )}
           </div>
         </div>
         <div className="sidebar__content">
@@ -85,7 +99,7 @@ const sidebar = css`
       left: 0;
 
       .sidebar {
-        &__button {
+        &__hamburger {
           left: 0px;
         }
 
@@ -98,22 +112,25 @@ const sidebar = css`
   }
 
   .sidebar {
-    &__button {
+    &__hamburger {
       cursor: pointer;
-      z-index: 9999;
       width: 70px;
       height: 70px;
+      z-index: 9999;
       border-top: 2px solid #000;
       border-left: 2px solid #000;
       border-bottom: 2px solid #000;
-      /* border: 2px solid #000; */
       background-color: rgba(249, 168, 212);
+      font-size: 2rem;
+
       position: absolute;
       top: 0;
       left: -70px;
+
       display: flex;
       justify-content: center;
       align-items: center;
+
       &:hover {
         color: #fff;
       }
@@ -158,6 +175,8 @@ const sidebar = css`
       display: flex;
       justify-content: center;
       align-items: center;
+
+      font-size: 2rem;
       &:hover {
         color: #fff;
       }
