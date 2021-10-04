@@ -8,6 +8,7 @@ import { all } from "redux-saga/effects";
 
 // modules && Saga
 import auth, { loginSaga } from "./global/auth";
+import cart from "./global/cart";
 import main, { mainSaga } from "./main/main";
 import detail, { detailSaga } from "./detail/detail";
 
@@ -17,6 +18,7 @@ const sagaMiddleware = createSagaMiddleware();
 // root
 const rootReducer = combineReducers({
   auth,
+  cart,
   main,
   detail,
 });

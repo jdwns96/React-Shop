@@ -2,14 +2,17 @@ import React, { useCallback, useMemo } from "react";
 
 import { useHistory } from "react-router";
 
+// redux
+import { useDispatch } from "react-redux";
+import { selCartAction } from "@modules/global/cart";
+import type { RootState } from "@modules";
+
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
 // font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-
-import type { RootState } from "@modules";
 
 type GetElementType<T extends any[]> = T extends (infer U)[] ? U : never;
 
@@ -20,7 +23,10 @@ type Props = {
 
 const Card = (props: Props) => {
   // props
-  const { id, title, price, img } = props.data;
+  const { id, title, price, img, describe } = props.data;
+
+  // redux
+  const dispatch = useDispatch();
 
   // router
   const history = useHistory();
@@ -33,8 +39,17 @@ const Card = (props: Props) => {
     [history, id],
   );
 
-  const onClickBtn = useCallback((e: React.MouseEvent) => {
+  const onCartClick = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
+    dispatch(
+      selCartAction({
+        id: id,
+        title: title,
+        price: price,
+        img: img,
+        describe: describe,
+      }),
+    );
   }, []);
 
   return (
@@ -45,8 +60,8 @@ const Card = (props: Props) => {
         </div>
         <p className="card__title">{title}</p>
         <p className="card__price">{price}</p>
-        <div className="card__button" onClick={onClickBtn}>
-          <button>
+        <div className="card__button">
+          <button className="card__detail-btn" onClick={onClickItem}>
             {useMemo(
               () => (
                 <FontAwesomeIcon icon={faSearch} />
@@ -54,7 +69,7 @@ const Card = (props: Props) => {
               [],
             )}
           </button>
-          <button>
+          <button className="card__cart-btn" onClick={onCartClick}>
             {useMemo(
               () => (
                 <FontAwesomeIcon icon={faShoppingCart} />
@@ -123,7 +138,7 @@ const card = css`
         /* transition: 0.2s; */
         border: 2px solid black;
         border-radius: 3px;
-        font-size: 1.25rem;
+        font-size: 2rem;
         padding: 0.5rem;
         width: 48%;
         cursor: pointer;
@@ -138,6 +153,10 @@ const card = css`
           color: #fff;
         }
       }
+    }
+
+    &__cart-btn {
+      background-color: rgba(249, 168, 212) !important;
     }
   }
 

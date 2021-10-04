@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 
 // Redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "@modules";
 import { logoutAction } from "@modules/global/auth";
 
 /** @jsxImportSource @emotion/react */
@@ -16,6 +17,8 @@ import Card from "./card";
 const SideBar = () => {
   // Redux
   const dispatch = useDispatch();
+  const { carts } = useSelector((store: RootState) => store.cart);
+  console.log(carts);
 
   // state
   const [toggle, setToggle] = useState(false);
