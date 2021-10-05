@@ -104,9 +104,10 @@ const card = css`
     }
 
     &__title {
-      font-size: 1rem;
+      font-size: 1.5rem;
+      font-weight: 600;
       text-align: center;
-      padding: 1rem 0;
+      padding: 1rem 0 0.5rem 0;
     }
 
     &__img {
@@ -125,7 +126,7 @@ const card = css`
     }
 
     &__price {
-      font-size: 1.5rem;
+      font-size: 1.1rem;
       text-align: center;
       font-weight: 600;
       padding: 1rem 0;

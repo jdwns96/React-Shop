@@ -1,49 +1,61 @@
-### 사용 툴 및 모듈
+# 🛍️ 리엑트 쇼핑몰
 
-- cra
-- react-router-dom
-- redux, redux-saga
-- typescript
-- emotion
-- tailwind
+images
 
-### 디렉토리 구조
+리엑트를 사용해 간단한 쇼핑몰을 만들었다.  
+전체적인 컴포넌트는 **로그인**, **메인화면**, **상세 페이지**, **사이드바** 로 이루어져있다.  
+나의 코드 스타일, 디렉토리 구조, 리엑트 구조 등등 기록하기 위해서 **REACT SHOP** 프로젝트를 만들었다.
 
+<br/>
+
+# ⚙️ 사용 모듈
+
+> typescript  
+> CRA (create-react-app), react-router, craco  
+> redux, redux-saga  
+> emotion  
+> fortawesome
+
+<br/>
+
+# 💡 구현 기능
+
+### 특징
+
+- 로그인 기능
+- 페이지네이션 & 쿼리스트링 & 동적라우팅
+- 리덕스 사가를 이용한 상태관리
+- 반응형 CSS
+- 장바구니 (LocalStorage)
+- 햄버거 (사이드바)
+
+<br/>
+
+# ⌚︎ 실행
+
+```bash
+    npm install
 ```
-src - assets >> 이미지, css 등등
-    - components - commom >> 공통컴포넌트
-                 - template >> 레이아웃
-    - modules - redux
-    - pages - page
+
+```bash
+    npm run start
 ```
 
-### 구현 리스트
+<br/>
 
-- 로그인 페이지
-- 메인 페이지 + 페이지네이션 + 동적 라우팅
-- 상세 페이지
+# 🗝 작업 이슈
 
-### npm
+### 웹펙 경로 처리
 
-```
-    npm i redux redux-saga redux-devtools-extension react-redux
-```
+`CRA` 와 `tsconfig.json` 을 이용해 경로를 처리해주던중 이슈가 발생.  
+`tsconfig.json` 에서 `paths` 경로를 달아도 시작하면 리셋이 된다. 따라서 overrightened  
+`webpack` 을 직접 까서 수정하는 방법과 `craco` 를 이용한 경로 설정중 후자를 이용함.
 
-### 경로 작업
-
-weppack 에서 경로 수정및 tsconfig 파일 수정
-@이슈
-tsconfig 에서 paths 경로를 달아도 시작하면 리셋이 된다. 따라서 overrightened
-
-CRA 커스텀 실패, 자동으로 경로가 리셋되는 이슈 등 문제 있음
-그냥 CRACO 사용으로 변경
+<br/>
 
 ### 이모션
 
-styled 컴포넌트와 다르게 추가적인 설정을 요함
+styled 컴포넌트와 다르게 추가적인 설정을 요하고, 이 프로젝트에선 최적화된 설정 처리는 하지 못했다.  
+추후 검토를 해야함.
 
-###
-
-/main?page=1 (보여줄 페이지)
-/detail/1 (제품 아이디)
-/detail/2
+<br/>

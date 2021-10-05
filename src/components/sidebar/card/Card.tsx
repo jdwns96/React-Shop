@@ -118,6 +118,7 @@ const card = css`
         font-weight: 600;
         display: flex;
         align-items: flex-end;
+        text-align: right;
 
         & > .count {
           color: rgb(252, 211, 77);
