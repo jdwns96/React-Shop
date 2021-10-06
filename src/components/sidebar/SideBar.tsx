@@ -12,6 +12,7 @@ import { css } from "@emotion/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHamburger, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
+// child Component
 import Card from "./card";
 
 const SideBar = () => {
@@ -63,13 +64,13 @@ const SideBar = () => {
         </div>
         <div className="sidebar__content">
           {cart.map((elem: any, i: number) => (
-            <Card {...elem} />
+            <Card {...elem} key={elem.id} />
           ))}
         </div>
         <div className="sidebar__footer">
           <div className="sidebar__total">
             <p>Total</p>
-            <p>100$</p>
+            <p>0$</p>
           </div>
           <div className="sidebar__check-out">CHECK OUT</div>
         </div>
@@ -206,15 +207,15 @@ const sidebar = css`
       justify-content: space-between;
       align-items: center;
 
-      & > p:nth-child(1) {
+      & > p:nth-of-type(1) {
         font-weight: 600;
         font-size: 1.75rem;
       }
 
-      & > p:nth-child(2) {
+      & > p:nth-of-type(2) {
         font-weight: 600;
         font-size: 1.25rem;
-        color: #fff;
+        /* color: #fff; */
       }
     }
 
