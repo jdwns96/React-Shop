@@ -5,7 +5,6 @@ import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "@modules";
 import { authRequestAction } from "@modules/global/auth";
-import { initCartAction } from "@modules/global/cart";
 
 // components
 import AppHeader from "@components/headers/AppHeader";
@@ -16,7 +15,6 @@ import Spinner from "@components/common/Spinner";
 const AppLayout = ({ children }: { children: JSX.Element }) => {
   // Redux
   const { isVerification, data } = useSelector((store: RootState) => store.auth);
-  const { isInitStorage } = useSelector((store: RootState) => store.cart);
   const dispatch = useDispatch();
 
   // MOUNT -- login check
@@ -24,14 +22,6 @@ const AppLayout = ({ children }: { children: JSX.Element }) => {
     if (isVerification === false) {
       // 검증을 받아야한다.
       dispatch(authRequestAction());
-      // 여기서 Localstorage 가져옴
-    }
-  }, []);
-
-  // MOUNT -- storage
-  useEffect(() => {
-    if (isInitStorage === false) {
-      dispatch(initCartAction());
     }
   }, []);
 

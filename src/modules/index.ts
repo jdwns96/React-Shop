@@ -8,7 +8,7 @@ import { all } from "redux-saga/effects";
 
 // modules && Saga
 import auth, { loginSaga } from "./global/auth";
-import cart from "./global/cart";
+import cart, { cartSaga } from "./global/cart";
 import main, { mainSaga } from "./main/main";
 import detail, { detailSaga } from "./detail/detail";
 
@@ -25,7 +25,7 @@ const rootReducer = combineReducers({
 
 // saga
 function* rootSaga() {
-  yield all([loginSaga(), mainSaga(), detailSaga()]);
+  yield all([loginSaga(), mainSaga(), detailSaga(), cartSaga()]);
 }
 
 //configure with production | development

@@ -1,7 +1,5 @@
 import React from "react";
 
-import image1 from "@assets/images/image1.jpeg";
-
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
@@ -9,7 +7,15 @@ import { css } from "@emotion/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
-const Card = () => {
+type Props = {
+  id: number;
+  title: string;
+  price: string;
+  img: string;
+  describe: string;
+  quantity: number;
+};
+const Card = ({ id, title, price, img, quantity }: Props) => {
   return (
     <div className="card" css={card}>
       <div className="card__inner-container">
@@ -17,15 +23,15 @@ const Card = () => {
           <FontAwesomeIcon icon={faTimes} />
         </div>
         <div className="card__img">
-          <img src={image1} alt="items" />
+          <img src={img} alt="items" />
         </div>
         <div className="card__body">
-          <p className="card__title">엄준식 에디션</p>
-          <p className="card__price">100$</p>
+          <p className="card__title">{title}</p>
+          <p className="card__price">{price}</p>
           <div className="card__quantity">
             <div className="text">
               <span>수량</span>
-              <span className="count"> 1 </span>
+              <span className="count"> {quantity} </span>
               <span>개</span>
             </div>
             <div className="operate-box">

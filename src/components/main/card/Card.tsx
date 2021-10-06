@@ -48,6 +48,7 @@ const Card = (props: Props) => {
         price: price,
         img: img,
         describe: describe,
+        quantity: 1,
       }),
     );
   }, []);

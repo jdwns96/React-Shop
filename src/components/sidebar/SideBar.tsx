@@ -17,8 +17,7 @@ import Card from "./card";
 const SideBar = () => {
   // Redux
   const dispatch = useDispatch();
-  const { carts } = useSelector((store: RootState) => store.cart);
-  console.log(carts);
+  const cart = useSelector((store: RootState) => store.cart) as object[];
 
   // state
   const [toggle, setToggle] = useState(false);
@@ -63,12 +62,9 @@ const SideBar = () => {
           </div>
         </div>
         <div className="sidebar__content">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {cart.map((elem: any, i: number) => (
+            <Card {...elem} />
+          ))}
         </div>
         <div className="sidebar__footer">
           <div className="sidebar__total">
