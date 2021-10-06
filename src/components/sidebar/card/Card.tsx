@@ -1,5 +1,8 @@
 import React from "react";
 
+import { useDispatch } from "react-redux";
+import { delCartAction, plusCartAction, minusCartAction } from "@modules/global/cart";
+
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
@@ -16,10 +19,24 @@ type Props = {
   quantity: number;
 };
 const Card = ({ id, title, price, img, quantity }: Props) => {
+  const dispatch = useDispatch();
+
+  const onRemoveClick = (e: React.MouseEvent) => {
+    dispatch(delCartAction(id));
+  };
+
+  const onPlusClick = (e: React.MouseEvent) => {
+    dispatch(plusCartAction(id));
+  };
+
+  const onMinusClick = (e: React.MouseEvent) => {
+    dispatch(minusCartAction(id));
+  };
+
   return (
     <div className="card" css={card}>
       <div className="card__inner-container">
-        <div className="card__del-btn">
+        <div className="card__del-btn" onClick={onRemoveClick}>
           <FontAwesomeIcon icon={faTimes} />
         </div>
         <div className="card__img">
@@ -35,10 +52,10 @@ const Card = ({ id, title, price, img, quantity }: Props) => {
               <span>개</span>
             </div>
             <div className="operate-box">
-              <div>
+              <div onClick={onPlusClick}>
                 <FontAwesomeIcon icon={faPlus} />
               </div>
-              <div>
+              <div onClick={onMinusClick}>
                 <FontAwesomeIcon icon={faMinus} />
               </div>
             </div>
