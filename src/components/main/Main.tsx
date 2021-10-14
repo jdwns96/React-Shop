@@ -11,22 +11,13 @@ import { mainRequestAction } from "@modules/main/main";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
+import query from "@lib/query";
+
 // child component
 import Card from "./card";
 import Pagination from "./pagination";
 
 type GetElementType<T extends any[]> = T extends (infer R)[] ? R : never;
-
-// @queryString function
-const queryString = (qs: string): number => {
-  let response;
-  const val = qs.replace("?", "");
-  const arr = val.split("=");
-  const temp = parseInt(arr[arr.indexOf("page") + 1]);
-  isNaN(temp) ? (response = 1) : (response = temp); // NaN 일 경우 "/" 으로 보낸다.
-
-  return response;
-};
 
 // JSX
 const Main = () => {
@@ -38,7 +29,7 @@ const Main = () => {
   const location = useLocation(); // location hooks
 
   // external function - queryString
-  const page = queryString(location.search);
+  const page = query(location.search);
 
   // UPDATE
   // 쿼리스트링의 값이 변할때 마다 dispatch하여 서버에서 데이터를 가져온다.

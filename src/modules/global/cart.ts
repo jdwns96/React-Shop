@@ -1,57 +1,6 @@
 import { takeEvery, select } from "redux-saga/effects";
 
-// function
-const selectCart = (state: Cart[], payload: { id: number; title: string; price: number; img: string; describe: string; quantity: number }) => {
-  const index = [...state].findIndex((elem) => elem.id === payload.id);
-  if (index > -1) {
-    const newList = [...state];
-    const calcCart = {
-      ...[...state][index],
-      quantity: [...state][index].quantity + 1,
-    };
-    newList[index] = calcCart;
-    return newList;
-  } else {
-    return [...state, { ...payload }];
-  }
-};
-
-const deleteCart = (state: Cart[], id: number) => {
-  const result = [...state].filter((elem) => elem.id !== id);
-  return result;
-};
-
-const plusCart = (state: Cart[], id: number) => {
-  const index = [...state].findIndex((elem) => elem.id === id);
-  const newList = [...state];
-  const calcCart = {
-    ...[...state][index],
-    quantity: [...state][index].quantity + 1,
-  };
-  newList[index] = calcCart;
-  return newList;
-};
-
-const minusCart = (state: Cart[], id: number) => {
-  const index = [...state].findIndex((elem) => elem.id === id);
-  const newList = [...state];
-  if (newList[index].quantity === 1) return newList;
-  const calcCart = {
-    ...[...state][index],
-    quantity: [...state][index].quantity - 1,
-  };
-  newList[index] = calcCart;
-  return newList;
-};
-
-const totalPrice = (cart: Cart[]) => {
-  let result;
-  result = cart.reduce((acc: number, cur: Cart, i: number) => {
-    return (acc += cur.price * cur.quantity);
-  }, 0);
-
-  return result;
-};
+import { selectCart, deleteCart, plusCart, minusCart, totalPrice } from "@lib/calc";
 
 type CartAction = ReturnType<typeof selCartAction> | ReturnType<typeof delCartAction> | ReturnType<typeof plusCartAction> | ReturnType<typeof minusCartAction>;
 type CartState = {
@@ -96,10 +45,23 @@ export function* cartSaga() {
   yield takeEvery([SELECT_CART, DELETE_CART, PLUS_CART, MINUS_CART], cartMiddleware);
 }
 
-const initialState: CartState = {
-  totalPrice: JSON.parse(localStorage.getItem("Cart") ?? '{ "cart": [], "total": "0"}').total,
-  cart: JSON.parse(localStorage.getItem("Cart") ?? '{ "cart": [], "total": "0"}').cart,
+// try catch 를 한 이유는 만약 사용자가 임으로 local값을 건들였을때 에러가 발생해서
+let initialState = {
+  totalPrice: 0,
+  cart: [],
 };
+try {
+  initialState = {
+    totalPrice: JSON.parse(localStorage.getItem("Cart") ?? '{ "cart": [], "total": "0"}').total,
+    cart: JSON.parse(localStorage.getItem("Cart") ?? '{ "cart": [], "total": "0"}').cart,
+  };
+} catch (e) {
+  initialState = {
+    totalPrice: 0,
+    cart: [],
+  };
+  localStorage.removeItem("Cart");
+}
 
 const reducer = (state: CartState = initialState, action: CartAction) => {
   let cart;
