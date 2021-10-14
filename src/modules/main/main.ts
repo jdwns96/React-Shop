@@ -12,7 +12,7 @@ type MainState = {
 type Item = {
   id: number;
   title: string;
-  price: string;
+  price: number;
   img: string;
   describe: string;
 };

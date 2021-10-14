@@ -18,7 +18,7 @@ import Card from "./card";
 const SideBar = () => {
   // Redux
   const dispatch = useDispatch();
-  const { cart }: any = useSelector((store: RootState) => store.cart) as object[];
+  const { cart, totalPrice } = useSelector((store: RootState) => store.cart);
 
   // state
   const [toggle, setToggle] = useState(false);
@@ -70,7 +70,7 @@ const SideBar = () => {
         <div className="sidebar__footer">
           <div className="sidebar__total">
             <p>Total</p>
-            <p>0$</p>
+            <p>{totalPrice}$</p>
           </div>
           <div className="sidebar__check-out">CHECK OUT</div>
         </div>

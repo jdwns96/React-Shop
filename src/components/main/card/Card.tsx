@@ -60,7 +60,7 @@ const Card = (props: Props) => {
           <img src={img} alt="closet" />
         </div>
         <p className="card__title">{title}</p>
-        <p className="card__price">{price}</p>
+        <p className="card__price">{price}$ </p>
         <div className="card__button">
           <button className="card__detail-btn" onClick={onClickItem}>
             {useMemo(
