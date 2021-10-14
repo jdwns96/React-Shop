@@ -18,7 +18,7 @@ import Card from "./card";
 const SideBar = () => {
   // Redux
   const dispatch = useDispatch();
-  const cart = useSelector((store: RootState) => store.cart) as object[];
+  const { cart }: any = useSelector((store: RootState) => store.cart) as object[];
 
   // state
   const [toggle, setToggle] = useState(false);
