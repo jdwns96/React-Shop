@@ -44,7 +44,7 @@ const Card = ({ id, title, price, img, quantity }: Props) => {
         </div>
         <div className="card__body">
           <p className="card__title">{title}</p>
-          <p className="card__price">{price}</p>
+          <p className="card__price">{price}$</p>
           <div className="card__quantity">
             <div className="text">
               <span>수량</span>

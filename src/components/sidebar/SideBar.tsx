@@ -224,6 +224,7 @@ const sidebar = css`
       background-color: rgba(252, 211, 77);
       border-radius: 2px;
       border: 2px solid #000;
+      cursor: pointer;
 
       display: flex;
       justify-content: center;

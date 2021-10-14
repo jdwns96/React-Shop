@@ -108,7 +108,9 @@ const card = css`
       font-size: 1.5rem;
       font-weight: 600;
       text-align: center;
-      padding: 1rem 0 0.5rem 0;
+      height: 40px;
+      margin: 1rem 0rem;
+      padding: 0rem 0.5rem;
     }
 
     &__img {
@@ -130,7 +132,7 @@ const card = css`
       font-size: 1.1rem;
       text-align: center;
       font-weight: 600;
-      padding: 1rem 0;
+      margin-bottom: 1rem;
     }
 
     &__button {

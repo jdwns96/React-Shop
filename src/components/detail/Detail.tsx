@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "@modules";
 import { detailRequestAction } from "@modules/detail/detail";
 
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
+
 const Detail = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((store: RootState) => store.detail);
@@ -18,11 +21,33 @@ const Detail = () => {
   }, []);
 
   return (
-    <div>
+    <>
       {console.log(data)}
-      <div>상세 페이지</div>
-    </div>
+      <div className="detail" css={detail}>
+        <div className="detail__inner-container">
+          <div>왼쪽</div>
+          <div>오른쪽</div>
+        </div>
+      </div>
+    </>
   );
 };
+
+const detail = css`
+  padding: 2rem 0;
+  /* padding-bottom: 0rem; */
+  width: 100%;
+  max-width: 1920px;
+  display: flex;
+  justify-content: center;
+
+  .detail {
+    &__inner-container {
+      width: 80%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+`;
 
 export default Detail;
