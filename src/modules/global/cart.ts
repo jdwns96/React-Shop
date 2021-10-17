@@ -51,9 +51,10 @@ let initialState = {
   cart: [],
 };
 try {
+  // localstorage 처리할때 신경써야하는 부분
   initialState = {
-    totalPrice: JSON.parse(localStorage.getItem("Cart") ?? '{ "cart": [], "total": "0"}').total,
-    cart: JSON.parse(localStorage.getItem("Cart") ?? '{ "cart": [], "total": "0"}').cart,
+    totalPrice: JSON.parse(localStorage.getItem("Cart") ?? '{ "cart": [], "total": "0"}').total ?? 0,
+    cart: JSON.parse(localStorage.getItem("Cart") ?? '{ "cart": [], "total": "0"}').cart ?? [],
   };
 } catch (e) {
   initialState = {

@@ -4,7 +4,13 @@ import { detailFetch } from "@lib/fetch";
 type DetailAction = ReturnType<typeof detailRequestAction> | ReturnType<typeof detailSuccessAction> | ReturnType<typeof detailFailAction>;
 type DetailState = {
   isLoading: boolean;
-  data: object;
+  data: {
+    describe: string;
+    id: number;
+    img: string;
+    price: number;
+    title: string;
+  };
 };
 
 const DETAIL_REQUEST = "detail/DETAIL_REQUEST" as const;
@@ -31,7 +37,13 @@ export function* detailSaga() {
 
 const initialState: DetailState = {
   isLoading: false,
-  data: {},
+  data: {
+    describe: "",
+    id: 0,
+    img: "",
+    price: 0,
+    title: "",
+  },
 };
 
 const reducer = (state: DetailState = initialState, action: DetailAction) => {
